@@ -1,0 +1,47 @@
+CREATE TABLE AUTHOR (
+    author_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT,
+    last_name TEXT,
+    country TEXT
+);
+
+CREATE TABLE PUBLISHER (
+    publisher_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+
+CREATE TABLE GENRES (
+    genre_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+
+CREATE TABLE SOURCE (
+    source_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    type TEXT
+);
+
+CREATE TABLE FORMATS (
+    format_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+);
+
+CREATE TABLE BOOKS (
+    book_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    ISBN TEXT,
+    author_id INTEGER,
+    genre_id INTEGER,
+    publisher_id INTEGER,
+    publication_year INTEGER,
+    pages INTEGER,
+    language TEXT,
+    format_id INTEGER,
+    rating REAL,
+    source_id INTEGER,
+    read_date TEXT,
+    FOREIGN KEY (author_id) REFERENCES AUTHOR (author_id),
+    FOREIGN KEY (genre_id) REFERENCES GENRES (genre_id),
+    FOREIGN KEY (publisher_id) REFERENCES PUBLISHER (publisher_id),
+    FOREIGN KEY (format_id) REFERENCES FORMATS (format_id),
+    FOREIGN KEY (source_id) REFERENCES SOURCE (source_id)
+);
